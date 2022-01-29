@@ -1,0 +1,56 @@
+{% import "setlinks.html.twig" as setlinks %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+        <title>{% block title %}{% endblock %} Iconorator</title>
+        <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="/css/main.css" />
+        {% block css %}{% endblock %}
+        {% endblock %}
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div id="main" class="container">
+            <div class="row">
+                <div class="span4">
+                    <a href="/"><img src="/images/iconorator-logo2.png" alt="Iconorator" width="247" height="40" /></a>
+                </div>
+                <div class="span8">
+                    <ul class="nav nav-pills pull-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle"
+                               data-toggle="dropdown">Icon Sets <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/sets">List All Sets</a></li>
+                                <li class="divider"></li>
+                                {{ setlinks.navlinks(setNames) }}
+                            </ul>
+                        </li>
+                        <li><a href="/credits">Credits</a></li>
+                    </ul>
+                </div>
+            </div>
+            {% block content%}{% endblock %}
+        </div>
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+        {% block javascript %}{% endblock %}
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-2596657-4']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+
+        </script>
+    </body>
+</html>

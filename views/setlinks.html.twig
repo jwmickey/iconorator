@@ -1,0 +1,7 @@
+{% macro navlinks(setNames) %}
+{% for slug, name in setNames %}
+<li>
+    <a href="/sets/{{ slug }}">{{ name }}</a>
+</li>
+{% endfor %}
+{% endmacro %}

@@ -1,0 +1,41 @@
+{% extends "layout.twig" %}
+
+{% block title %}FAQ - {% endblock %}
+{% block content %}
+<h2>FAQ</h2>
+<div class="rounded-enclosed padded-10">
+    <dl class="faq">
+        <a name="add-set"></a>
+        <dt>Will you add [my-favorite-icon-set] to the site?</dt>
+        <dd>
+            I'm sure there are tons of great icon sets available that are not listed
+            here.  I have chosen a few to start out with but would be glad to add
+            more if they have been licensed in a way that allows me to redistribute
+            and modify them, such as the <a target="_blank"
+            href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>.
+            Send me an email (put email or contact form here!) if you have a good candidate.
+        </dd>
+
+        <a name="why-use-sprites"></a>
+        <dt>Why should I use CSS sprites?</dt>
+        <dd>
+            <a target="_blank" href="http://developer.yahoo.com/performance/rules.html#opt_sprites">Yahoo!</a>
+            has suggested to use CSS sprites for website performance along with <a target="_blank"
+            href="http://code.google.com/speed/page-speed/docs/rtt.html#SpriteImages">Google</a>.
+            Frankly, that's enough reason for me, but if you want to learn more about
+            how CSS sprites can help you achive better website performance, read this article on
+            <a target="_blank" href="http://css-tricks.com/css-sprites/">css-tricks.com</a>
+        </dd>
+
+        <a name="why-use-iconorator"></a>
+        <dt>Aren't there other sites that do this?</dt>
+        <dd>
+            Yes, there are similar sites that offer more or less features than
+            Iconorator.  This site is specific to icon sets and there are a few
+            <a href="/features">features</a> that
+            I think make Iconorator worth using.  Plus, I wanted a new small hobby
+            project :)
+        </dd>
+    </dl>
+</div>
+{% endblock %}

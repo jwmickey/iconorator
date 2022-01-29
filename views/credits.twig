@@ -1,0 +1,48 @@
+{% extends "layout.twig" %}
+{% import "cc.html.twig" as cc %}
+
+{% block title %}About {% endblock %}
+{% block content %}
+<h2>Credits</h2>
+<h3>Icon Providers</h3>
+<p>
+    {% for slug, set in sets %}
+    Thanks to <a target="_blank" href="{{ set.authorUrl }}">{{ set.author }}</a>
+    for making <strong>{{ set.name }}</strong>.
+    <a target="_blank" href="http://www.creativecommons.org/licenses/{{ set.licenseType }}/{{ set.licenseVersion }}"
+       >{% filter upper %}CC {{ set.licenseType }} {{ set.licenseVersion }}{% endfilter %}</a><br/>
+    {% endfor %}
+</p>
+
+<h3>Technologies</h3>
+<p>
+    Thanks to <a href="http://fabien.potencier.org/" target="_blank">Fabien Potencier</a>
+    and the <a href="http://silex.sensiolabs.org/" target="_blank">Silex</a> team.
+    <br/>
+    Thanks to the folks at Twitter for making
+    <a href="http://twitter.github.com/bootstrap/index.html"
+       target="_blank">Bootstrap</a>.  It's awesome!
+    <br/>
+    Thanks to everyone involved in all of the open source projects required to make websites like this possible.
+</p>
+
+<h3>Special Thanks</h3>
+<p>
+    To my very loving and <em>very</em> patient wife Amanda.
+    <br/>
+    To Mike, for the clever logo idea.
+    <br/>
+    To Drew, for many years of help and idea-bouncing.
+</p>
+
+<h3>About Me</h3>
+<p>
+    My name is <a href="http://www.jodymickey.com" target="_blank">Jody Mickey</a>.  I am
+    a web developer from Raleigh, NC.
+</p>
+
+<p>
+    <a href="http://twitter.com/#!/@iconorator" target="_blank"><img
+        src="/images/twitter-small.png" alt="Follow Iconnorator on Twitter" border="0"/></a>
+</p>
+{% endblock %}

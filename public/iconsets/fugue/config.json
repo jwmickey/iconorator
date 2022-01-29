@@ -1,0 +1,12 @@
+{
+    "name": "Fugue",
+    "slug": "fugue",
+    "author": "Yusuke Kamiyamane",
+    "authorUrl": "http://p.yusukekamiyamane.com/",
+    "licenseType": "by",
+    "licenseVersion": "3.0",
+    "description": "Over 3000 icons!",
+    "iconWidth": 16,
+    "iconHeight": 16,
+    "perPage": 100
+}

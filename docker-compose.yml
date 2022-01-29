@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  php:
+    build: ./docker/php-fpm
+    volumes:
+      - "./:/var/www/iconorator/:cached"
+  nginx:
+    image: nginx:alpine
+    environment:
+      NGINX_ENVSUBST_TEMPLATE_SUFFIX: ".conf"
+    ports:
+      - 80:80
+    volumes:
+      - "./docker/nginx/templates:/etc/nginx/templates:ro,cached"
+      - "./public:/var/www/wbl/public:ro,cached"

@@ -1,0 +1,145 @@
+
+#main { margin-top: 10px; }
+.centered { text-align: center; margin: 0 auto; }
+.lefted { text-align: left; }
+.righted { text-align: right; }
+.nomargin { margin: 0; }
+
+body { margin-bottom: 10px; }
+
+.linebreak {
+    margin-bottom: 20px;
+}
+
+.loading-container {
+    width: 300px;
+}
+.loading {
+    background-image: url(/images/loading.gif);
+    background-repeat: no-repeat;
+    background-position: 5px 50%;
+    padding-left: 25px;
+}
+
+.set-list-container {
+    width: 934px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    background-color: #FFF;
+    padding: 0;
+    padding-right: 0;
+    float: left;
+}
+.set-list { 
+    margin-bottom: 10px;
+    padding-left: 12px;
+}
+.set-list ul {
+    list-style: none;
+    padding: 0 auto;
+    margin: 0;
+    float: left;
+}
+.set-list:after {
+    content: '.';
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+.set-list li {
+    float: left;
+    padding: 5px;
+    margin: 0 4px 8px 4px;
+    width: 160px;
+    overflow: hidden;
+    text-align: left;
+    position: relative;
+}
+.set-list-32 li {
+    width: 162px;
+    margin: 0 6px 6px 0;
+}
+.condensed .set-list-16 li {
+    width: 16px;
+    height: 16px;
+    text-align: center;
+}
+.condensed .set-list-32 li {
+    width: 32px;
+    height: 32px;
+    text-align: center;
+}
+.set-list span {
+    font-size: 12px;
+    position: absolute;
+    left: 25px;
+    bottom: 3px;
+    width: 200px;
+}
+.set-list-32 span {
+    left: 40px;
+    top: 14px;
+}
+.condensed span {
+    display: none;
+}
+
+#composite {
+    margin: 0 auto;
+    padding: 0;
+}
+#generated-css, #generated-html {
+    height: 316px;
+    overflow: scroll;
+}
+
+dl.faq dd {
+    margin-bottom: 20px;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.build-num-selected { font-size: 24px; }
+#build-info .bar {
+    opacity: 0.9;
+}
+#build-info .bar p {
+    margin-top: -5px;
+}
+.build-preview { 
+    text-align: right;
+}
+.build-settings {
+    position: absolute;
+    top: 0;
+}
+#build-info {
+    display: block;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 240px;
+    width: 100%;
+    background-color: #EEE;
+    z-index: 1000;
+    border-top: 1px solid #999;
+    padding: 10px;
+    
+    -webkit-box-shadow: 0px -3px 10px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    0px -3px 10px rgba(50, 50, 50, 0.75);
+    box-shadow:         0px -3px 10px rgba(50, 50, 50, 0.75);
+}
+
+.thumbnail {
+    background-color: #FFF;
+    color: #444;
+}
+
+
+#download { width: 640px; }
+#download .modal-body {
+    height: 450px;
+    overflow: auto;
+}

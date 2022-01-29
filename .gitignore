@@ -1,0 +1,6 @@
+/cache/twig/*
+/cache/http/*
+/log/*.log
+nbproject
+/data/*
+/vendor/*

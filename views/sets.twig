@@ -1,0 +1,35 @@
+{% extends "layout.twig" %}
+{% import "cc.html.twig" as cc %}
+
+{% block title %}Icon Sets - {% endblock %}
+{% block content %}
+<h2>Icon Sets</h2>
+{% for slug, set in sets %}
+{% if loop.index % 2 == 1 %}
+<div class="row linebreak">
+{% endif %}
+    <div class="span4">
+        <div class="thumbnail">
+            <img src="/iconsets/{{ slug }}/preview.png" width="290" height="192" />
+            <div class="caption">
+                <h3>{{ set.name }}</h3>
+                <p>
+                    {{ set.description }}
+                </p>
+                <p class="pull-right">
+                    <a class="btn btn-primary btn-large"
+                       href="/sets/{{slug}}">Go!</a>
+                </p>
+                <p>
+                    Provided by <br/>
+                    <a target="_blank" href="{{ set.authorUrl }}">{{ set.author }}</a><br/>
+                    {{ cc.license(set.licenseType, set.licenseVersion) }}
+                </p>
+            </div>
+        </div>
+    </div>
+{% if loop.index % 3 == 0 or loop.last %}
+</div>
+{% endif %}
+{% endfor %}
+{% endblock %}

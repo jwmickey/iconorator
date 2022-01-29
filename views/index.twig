@@ -1,0 +1,77 @@
+{% extends "layout.twig" %}
+
+{% block title %}Welcome to{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="span6">
+        <div>
+            <p>
+                A number of <a href="/credits">talented artists</a> have
+                ever-so-graciously provided us who are not so artistically
+                gifted with icon sets containing hundreds and even thousands
+                of icons.  With so many choices, it's a safe bet that you can
+                find just what you need for your project.
+            </p>
+            <p>
+                However, you probably don't need <i>thousands</i> of icons!  Chances are you
+                need only a few dozen, if that many.  But if you're lazy (I am sometimes lazy),
+                you may just unzip mega-icon-pack.zip in all it's glory.
+            </p>
+            <p>
+                Of course this bloats your project with lots of unnecessary files, HTTP requests,
+                and misses out on perhaps the very best use for CSS sprites.
+            </p>
+            <p>
+                Iconorator aims to help by letting you pick and choose the icons you want from
+                a particular icon set and generates a composite image and CSS.
+            </p>
+            <p>
+                <strong>Requirements:</strong> Your web browser must support <a href="http://caniuse.com/canvas" target="_blank">HTML5 Canvas</a>
+                to use Iconorator.  That's pretty much any browser except Internet Explorer 8 and older.
+            </p>
+        </div>
+    </div>
+    <div class="span6">
+        <div class="hero-unit">
+            <h1>Iconorator</h1>
+            <h2>
+                helps you create a custom <a target="_blank"
+                    href="http://css-tricks.com/css-sprites/">CSS Sprite</a>
+                from a few popupar icon packs.
+            </h2>
+            <hr/>
+            <a class="pull-right btn btn-primary btn-large" href="/sets">See Icon Sets</a>
+        </div>
+        <div>
+            <script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+            <script>
+                new TWTR.Widget({
+                    version: 2,
+                    type: 'profile',
+                    rpp: 5,
+                    interval: 30000,
+                    width: 'auto',
+                    height: 300,
+                    theme: {
+                        shell: {
+                            background: '#cccccc',
+                            color: '#000000'
+                        },
+                        tweets: {
+                            background: '#3d3d3d',
+                            color: '#ffffff',
+                            links: '#eb9807'
+                        }
+                    },
+                    features: {
+                        scrollbar: false,
+                        loop: false,
+                        live: true,
+                        behavior: 'all'
+                    }
+                }).render().setUser('iconorator').start();
+            </script>
+        </div>
+    </div>
+</div>
+{% endblock %}

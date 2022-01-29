@@ -1,0 +1,16 @@
+{
+    "name": "jwmickey/iconorator",
+    "type": "project",
+    "require": {
+        "silex/silex": "^2.3",
+        "monolog/monolog": "^2.0",
+        "pimple/pimple": "^3.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jody Mickey",
+            "email": "jody.mickey@gmail.com"
+        }
+    ]
+}

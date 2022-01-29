@@ -1,0 +1,196 @@
+{% extends "layout.twig" %}
+
+{% block title %}Build CSS Sprite from {{ set.name }} icons - {% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/css/prettify.css" />
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript" src="/js/prettify/prettify.js"></script>
+<script type="text/javascript" src="/js/jquery.slides.min.js"></script>
+<script type="text/javascript" src="/js/builder.js?v=1.0.1"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $(".set-list-container").iconorator({
+        setName: "{{ slug }}", 
+        iconSet: "/iconsets/{{ slug }}/icons.json",
+        iconWidth: {{ set.iconWidth }},
+        iconHeight: {{ set.iconHeight }},
+        perPage: {{ set.perPage }},
+        srcImage: "/iconsets/{{ slug }}/sprite.png",
+        canvasSelector: "#iconorator-canvas",
+        selectedIcons: {% autoescape false %}{{ icons }}{% endautoescape %},
+        prefix: "{{ settings.prefix }}",
+        spriteName: "{{ settings.spriteName }}"
+    });
+
+    $("#search").on("submit", function(e) {
+        e.preventDefault();
+
+        $(".set-list-container").iconorator('search', $("#search-term").val());
+    });
+
+    $("#search-clear").on("click", function(e) {
+        $(".set-list-container").iconorator('reset');
+    });
+
+    $(".toggle-build-info").on("click", function(e) {
+        e.preventDefault();
+        var state = $(this).attr("data-state");
+        
+        if (state == "collapsed") {
+            $(this).attr("data-state", "expanded");
+            $(".set-list-container").css("margin-bottom", "240px");
+            $("#build-info").animate({ height: '240px' });
+            $(this).children("i").removeClass("icon-chevron-up")
+                                 .addClass("icon-chevron-down");
+        } else {
+            $(this).attr("data-state", "collapsed");
+            $("#build-info").animate({ height: '20px' });
+            $(".set-list-container").css("margin-bottom", "60px");
+            $(this).children("i").removeClass("icon-chevron-down")
+                                 .addClass("icon-chevron-up");
+        }
+    });
+    
+    $("button").tooltip();
+    $("label[rel=popover]").popover();
+});
+</script>
+{% endblock %}
+{% block head %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" href="/iconsets/{{ slug }}/sprite.css" />
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="span3">
+        <h2>{{ set.name }}</h2>
+    </div>
+    <div class="span6 centered">
+        <form class="form-search" id="search">
+            <input type="text" id="search-term" class="input-medium search-query" />
+            <button type="submit" class="btn">Search</button>
+            <button type="reset" class="btn" id="search-clear">Clear</button>
+        </form>
+    </div>
+    <div class="span3">
+        <div class="btn-group pull-right tipsy" data-toggle="buttons-radio">
+            <button class="btn active" id="iconorator-condense" title="Hide Icon Names"><i class="icon-th"></i></button>
+            <button class="btn" id="iconorator-expand" title="Show Icon Names"><i class="icon-list"></i></button>
+        </div>
+    </div>
+</div>
+
+<div class="set-list-container condensed">
+    <div class="loading alert alert-info">
+        Loading Assets... 
+    </div>
+    <div class="set-list"></div>
+    <div class="pagination pagination-centered">
+        <ul>
+            <li><a href="#" class="page-prev"><i class="icon-chevron-left"></i></a></li>
+            <li class="disabled page-number"><a href="#"></a></li>
+            <li><a href="#" class="page-next"><i class="icon-chevron-right"></i></a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="build-info">
+    <div class="container">
+        <div class="row bar">
+            <div class="span1">
+                <p class="build-preview"></p>
+            </div>
+            <div class="span8">
+                <span class="build-last-action label">No icons have been selected</span>
+            </div>
+            <div class="span2" style="text-align:right;">
+                <p><a href="#download" data-toggle="modal" class="btn btn-primary" id="iconorator-build">Download</a></p>
+            </div>
+            <div class="span1" style="text-align:right;">
+                <p><a href="#" data-state="expanded" class="btn toggle-build-info"><i class="icon-chevron-down"></i></a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span6">
+                <canvas id="iconorator-canvas" width="384" height="192">
+                    <div class="hero-unit">
+                        <h1>Oops!</h1>
+                        <p>
+                            Sorry, your browser does not support Canvas.  Try upgrading to 
+                            <a target="newbrowser" href="http://www.mozilla.org/firefox">Mozilla Firefox</a>, 
+                            <a target="newbrowser" href="http://www.google.com/chrome">Google Chrome</a>, 
+                            or the latest version of <a target="newbrowser" 
+                                                        href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home">Internet Explorer</a>.
+                        </p>
+                    </div>
+                </canvas>
+            </div>
+            <div class="span6">
+                <form class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label" for="prefix" rel="popover" data-original-title="What's This?" 
+                               data-content="Use this to prefix specific icon rules">Icon Prefix</label>
+                        <div class="controls">
+                            <input type="text" class="span2" name="prefix" id="prefix" value="icon_" />
+                        </div>
+                    </div>
+                        <div class="control-group">
+                        <label class="control-label" for="sprite-name" rel="popover" data-original-title="What's This?" 
+                               data-content="Name your sprite image">Image Name</label>
+                        <div class="controls">
+                            <div class="input-append">
+                                <input class="span2" id="sprite-name" type="text" value="icons" /><span class="add-on">.png</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>    
+            </div>
+        </div>
+    </div>
+</div>
+<div id="download" class="modal hide fade">
+    <div class="modal-header">
+        <h3>Download</h3>
+    </div>
+    <div class="modal-body">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#download-img" data-toggle="tab">Sprite</a></li>
+            <li><a href="#download-css" data-toggle="tab">CSS</a></li>
+            <li><a href="#download-html" data-toggle="tab">HTML</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="download-img">
+                <p><span class="label label-info">Right click image and save as <span id="download-img-name"></span></span></p>
+                <img/>
+            </div>
+            <div class="tab-pane" id="download-css">
+                <p><span class="label label-info copy-css">Copy and paste CSS</span></p>
+                <pre class="prettyprint lang-css"></pre>
+            </div>
+            <div class="tab-pane" id="download-html">
+                <p><span class="label label-info">For your convenience</span></p>
+                <pre class="prettyprint lang-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;link rel="stylesheet" type="text/css" href="sprite.css" /&gt;
+        &lt;style type="text/css"&gt;
+            ul { list-style: none; }
+            li { float: left; margin: 10px; }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        ::HTML::
+    &lt;/body&gt;
+&lt;/html&gt;
+                </pre>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+    </div>
+</div>
+{% endblock %}
